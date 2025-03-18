@@ -1,4 +1,4 @@
-export default function AboutUs() {
+const AboutUs = ()=>{
     return (
       <section className="bg-green-700 text-white py-16 px-6 md:py-24 md:px-12">
         <div className="container mx-auto text-center">
@@ -61,4 +61,4 @@ export default function AboutUs() {
       </section>
     );
   }
-  
+  export default AboutUs

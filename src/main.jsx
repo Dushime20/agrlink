@@ -6,13 +6,14 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './page/layout/Layou.jsx';
 import Home from './page/home/Home.jsx';
-import AboutUs from './page/home/aboutUs.jsx';
+
 import AuthTabs from './page/auth/AuthTabs.jsx';
 import ProductList from './page/products/ProductList.jsx';
 import ProductDetail from './page/products/ProductDetail.jsx';
 import Dashboard from './page/dashboard/dashboard.jsx';
 import MainContent from './page/dashboard/mainContent.jsx';
 import Profile from './page/profile/profile.jsx';
+import AboutUs from './page/home/aboutUs.jsx';
 
 const router = createBrowserRouter([
   {
