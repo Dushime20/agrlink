@@ -13,7 +13,8 @@ import ProductDetail from './page/products/ProductDetail.jsx';
 import Dashboard from './page/dashboard/dashboard.jsx';
 import MainContent from './page/dashboard/mainContent.jsx';
 import Profile from './page/profile/profile.jsx';
-import AboutUs from './page/home/aboutUs.jsx';
+import AboutPage from './page/home/aboutUs.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
     element:< Layout/>,
     children:[
       {path:"/", element:<Home/>},
-      {path:"/about", element:<AboutUs/>},
+      {path:"/about", element:<AboutPage/>},
      
       {path:"/products",element:<ProductList/>},
       {path:"/product-detail/:id", element:<ProductDetail/>},
