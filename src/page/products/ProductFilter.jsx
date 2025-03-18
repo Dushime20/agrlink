@@ -15,7 +15,8 @@ const ProductFilter = ({ categories, onFilter }) => {
   return (
     <div className="flex flex-wrap gap-4 p-4 bg-white shadow rounded-lg">
       {/* Search Input */}
-      <Input
+      <Input 
+       className="w-full"
         placeholder="Search by name"
         value={name}
         onChange={(e) => setName(e.target.value)}
@@ -47,7 +48,7 @@ const ProductFilter = ({ categories, onFilter }) => {
       </Select>
 
       {/* Apply Filters Button */}
-      <Button onClick={handleFilter}>Apply Filters</Button>
+      <Button className="bg-green-800 hover:bg-green-400" onClick={handleFilter}>Apply Filters</Button>
     </div>
   );
 };
