@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Services from "./Service";
-import AboutUs from "./aboutUs";
+import AboutUs from "./AboutUsPage";
 import ContactUs from "./ContactUs";
 
 export default function Hero() {

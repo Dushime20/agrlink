@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from './Hero'
 import Services from './Service'
-import AboutUs from './aboutUs'
+import AboutUs from './AboutUsPage'
 import ContactUs from './ContactUs'
 import ProductCard from '../products/ProductCard'
 import { Link } from 'react-router-dom'
