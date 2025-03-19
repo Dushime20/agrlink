@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ApiService from '@/config/ApiService';
+import ApiService from '@/config/ApiConfig';
 import { toast } from 'sonner';
 
 const AddCar = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ApiService from '@/config/ApiService';
+import ApiService from '@/config/ApiConfig';
 import { Button } from '@/components/ui/button'; // Import your Button component if you have one
 
 const UserSettings = () => {
