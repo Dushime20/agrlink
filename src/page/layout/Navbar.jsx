@@ -27,6 +27,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="hover:underline">Home</Link>
           <Link to="/products" className="hover:underline">Products</Link>
+          <Link to="/dashboard" className="hover:underline">Admin</Link>
           <Link to="/cart" className="hover:underline flex items-center">
             <ShoppingCart size={20} className="mr-1" /> Cart
           </Link>
