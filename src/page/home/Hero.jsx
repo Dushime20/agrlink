@@ -1,13 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import Services from "./Service";
-import AboutUs from "./AboutUsPage";
-import ContactUs from "./ContactUs";
+
 
 export default function Hero() {
   return (
     <div>
-        <section className="relative bg-green-700 text-white py-16 px-6 md:py-24 md:px-12">
+        <section className="relative bg-green-50 text-green-700 py-16 px-6 md:py-24 md:px-12">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Left Content */}
         <div className="md:w-1/2 text-center md:text-left">

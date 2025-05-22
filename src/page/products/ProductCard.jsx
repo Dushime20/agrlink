@@ -48,21 +48,15 @@ const ProductCard = ({ product }) => {
 
     {/* Price & Details Button */}
     <div className="flex justify-between items-center mt-3">
-      <p className="text-green-600 font-bold text-xl">${product.price}</p>
-      <Link
-        to={`/product-detail/${product.id}`}
-        className="hover:opacity-80 transition-opacity duration-300"
-      >
-        <Eye
-          className="text-gray-600 hover:text-green-600 cursor-pointer"
-          size={22}
-        />
-      </Link>
+      <p className="text-green-600 font-bold text-xl">${product.price} per Kg</p>
+      
     </div>
 
     {/* Add to Cart Button */}
     <Button className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition-colors duration-300">
-      Add to Cart
+    <Link to={`/product-detail/${product.id}`}>
+    View Deatails
+    </Link>
     </Button>
   </div>
 

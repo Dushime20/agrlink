@@ -27,7 +27,7 @@ const COLORS = ["#f97316", "#3b82f6", "#22c55e"];
 
 const MainContent = () => {
   return (
-    <div className="pt-4  bg-gray-100 min-h-screen ">
+    <div className="pt-4  text-green-900 bg-gray-100 min-h-screen ">
       <div className="max-w-6xl mx-auto">
         {/* Summary Section */}
         <div className="grid grid-cols-4 gap-4 mb-6">

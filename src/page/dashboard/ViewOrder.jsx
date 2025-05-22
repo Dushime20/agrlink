@@ -1,11 +1,12 @@
+import { Button } from '@/components/ui/button'
 import React, { useState } from 'react'
-import { Button } from "@/components/ui/button" // Use your Button component
-import { toast } from 'sonner' // For displaying notifications
+import { FaEdit, FaPlus } from 'react-icons/fa'
+import { FaDeleteLeft } from 'react-icons/fa6'
+import { MdDelete, MdEdit } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
-import { FaPlus } from "react-icons/fa6";
 
-const ManageCars = () => {
-  const [cars, setCars] = useState([
+function ViewOrder() {
+ const [cars, setCars] = useState([
     { id: 1, name: 'Toyota Camry', model: '2022', available: true },
     { id: 2, name: 'Honda Accord', model: '2021', available: false },
     { id: 3, name: 'BMW X5', model: '2023', available: true },
@@ -26,10 +27,10 @@ const ManageCars = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 text-green-900">
       <div className='flex justify-between mb-1'>
-      <h1 className="text-2xl font-bold mb-4">All Cars</h1>
-      <Link to={"/dashboard/add-car"}><button className='text-white bg-[#11033b] p-3 rounded-md'><FaPlus /></button></Link>
+      <h1 className="text-2xl font-bold mb-4">All Order</h1>
+      <Link to={"/dashboard/add-car"}><button className='text-white bg-green-900 p-3 rounded-md'><FaPlus /></button></Link>
           </div>
 
       <div className="overflow-x-auto bg-white shadow-md rounded-lg">
@@ -54,18 +55,18 @@ const ManageCars = () => {
                   <td className="px-4 py-2">{car.model}</td>
                   <td className="px-4 py-2">{car.available ? "Available" : "Not Available"}</td>
                   <td className="px-4 py-2">
-                    <Button
+                    <button
                       onClick={() => handleEdit(car.id)}
-                      className="mr-2 bg-blue-500 text-white rounded px-4 py-2"
+                      className=" text-green-900 "
                     >
-                      Edit
-                    </Button>
-                    <Button
+                      <MdEdit size={20}/>
+                    </button>
+                    <button
                       onClick={() => handleDelete(car.id)}
-                      className="bg-red-500 text-white rounded px-4 py-2"
+                      className="text-red-500 m-4"
                     >
-                      Delete
-                    </Button>
+                      <MdDelete  size={20}/>
+                    </button>
                   </td>
                 </tr>
               ))
@@ -77,4 +78,6 @@ const ManageCars = () => {
   )
 }
 
-export default ManageCars
+
+
+export default ViewOrder

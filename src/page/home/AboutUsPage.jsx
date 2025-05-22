@@ -1,6 +1,9 @@
+import ContactUs from "./ContactUs";
+import Services from "./Service";
+
 const AboutPage = () => {
   return (
-    <section className="bg-green-700 text-white py-16 px-6 md:py-24 md:px-12">
+    <section className="bg-green-50 text-green-700 py-16 px-6 md:py-24 md:px-12">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold">About AGRILINK Rwanda</h2>
         <p className="mt-4 text-lg">
@@ -58,6 +61,9 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
+
+       <Services/>
+        <ContactUs/>
     </section>
   );
 };

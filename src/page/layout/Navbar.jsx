@@ -29,7 +29,7 @@ export default function Navbar() {
           <Link to="/products" className="hover:underline">Products</Link>
           <Link to="/dashboard" className="hover:underline">Admin</Link>
           <Link to="/cart" className="hover:underline flex items-center">
-            <ShoppingCart size={20} className="mr-1" /> Cart
+            <ShoppingCart size={20} className="mr-1" /> My order
           </Link>
           <Link to="/profile" className="hover:underline flex items-center">
             <User size={20} className="mr-1" /> Profile

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 class ApiService {
-  static BASE_URL = "http://localhost:8080/iktech";
+  static BASE_URL = "http://localhost:3300/agritech/v1";
 
   static getHeader() {
     const token = localStorage.getItem("token");
@@ -44,7 +44,7 @@ class ApiService {
 
 static async getAllUser() {
   try {
-    const response = await axios.get(`${this.BASE_URL}/user/listAll`, {
+    const response = await axios.get(`${this.BASE_URL}/user/getAll`, {
       headers: this.getHeader()
     });
     return response.data;
@@ -54,6 +54,44 @@ static async getAllUser() {
   }
 }
 
+//***** GET USER BY ID ****/
+static async getUserById(userId) {
+  try {
+    const response = await axios.get(`${this.BASE_URL}/user/getById/${userId}`, {
+      headers: this.getHeader()
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching user with ID ${userId}:`, error);
+    throw error;
+  }
+}
+
+//***** UPDATE USER BY ID ****/
+static async updateUserById(userId, updatedData) {
+  try {
+    const response = await axios.put(`${this.BASE_URL}/user/update/${userId}`, updatedData, {
+      headers: this.getHeader()
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating user with ID ${userId}:`, error);
+    throw error;
+  }
+}
+
+//***** DELETE USER ****/
+static async deleteUser(userId) {
+  try {
+    const response = await axios.delete(`${this.BASE_URL}/user/delete/${userId}`, {
+      headers: this.getHeader()
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting user with ID ${userId}:`, error);
+    throw error;
+  }
+}
 
 
          /****CAR */

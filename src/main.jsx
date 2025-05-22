@@ -14,6 +14,9 @@ import Dashboard from './page/dashboard/dashboard.jsx';
 import MainContent from './page/dashboard/mainContent.jsx';
 import Profile from './page/profile/profile.jsx';
 import AboutPage from './page/home/AboutUsPage.jsx';
+import ManageProduct from './page/dashboard/ManageProduct';
+import ViewOrder from './page/dashboard/ViewOrder';
+import UserSettings from './page/dashboard/User';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +36,10 @@ const router = createBrowserRouter([
     path:"/dashboard",
     element:<Dashboard/>,
     children:[
-      {path:"", element: <MainContent/>}
+      {path:"", element: <MainContent/>},
+      {path:"manage-product", element: <ManageProduct/>},
+      {path:"view-order", element: <ViewOrder/>},
+      {path:"user-settings", element: <UserSettings/>},
     ]
   }
 ])

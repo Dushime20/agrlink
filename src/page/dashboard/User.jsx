@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import ApiService from '@/config/ApiConfig';
-import { Button } from '@/components/ui/button'; // Import your Button component if you have one
+import React, { useEffect, useState } from "react";
+import ApiService from "@/config/ApiConfig";
+import { Button } from "@/components/ui/button"; // Import your Button component if you have one
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const UserSettings = () => {
   // State to store users
@@ -15,11 +16,11 @@ const UserSettings = () => {
         const response = await ApiService.getAllUser(); // Replace with the actual endpoint URL
         setUsers(response.getUsers); // Access the getUsers array in the response
         setLoading(false);
-        console.log("response",response)
-        console.log("usersssss",users)
+        console.log("response", response);
+        console.log("usersssss", users);
       } catch (err) {
-        console.log(error)
-        setError('Failed to fetch users');
+        console.log(error);
+        setError("Failed to fetch users");
       } finally {
         setLoading(false);
       }
@@ -30,13 +31,13 @@ const UserSettings = () => {
 
   const handleEdit = (userId) => {
     // Handle edit action
-    console.log('Edit user with ID:', userId);
+    console.log("Edit user with ID:", userId);
     // Implement edit logic here
   };
 
   const handleDelete = (userId) => {
     // Handle delete action
-    console.log('Delete user with ID:', userId);
+    console.log("Delete user with ID:", userId);
     // Implement delete logic here
   };
 
@@ -50,8 +51,7 @@ const UserSettings = () => {
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-lg">
-
-        <div>hello</div>
+      <div>hello</div>
       <h2 className="text-xl font-bold mb-4">User Management</h2>
       <div className="overflow-x-auto bg-white shadow-md rounded-lg">
         <table className="min-w-full table-auto">
@@ -68,26 +68,29 @@ const UserSettings = () => {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={user.id} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
+              <tr
+                key={user.id}
+                className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
+              >
                 <td className="py-2 px-4 text-center">{user.id}</td>
                 <td className="py-2 px-4">{user.Name}</td>
                 <td className="py-2 px-4">{user.Email}</td>
                 <td className="py-2 px-4">{user.role}</td>
                 <td className="py-2 px-4">{user.PhoneNumber}</td>
                 <td className="py-2 px-4">{user.Address}</td>
-                <td className="py-2 px-4">
-                  <Button
-                    onClick={() => handleEdit(user.id)}
-                    className="mr-2 bg-blue-500 text-white rounded px-4 py-2"
+                <td className="px-4 py-2">
+                  <button
+                    onClick={() => handleEdit(car.id)}
+                    className=" text-green-900 "
                   >
-                    Edit
-                  </Button>
-                  <Button
-                    onClick={() => handleDelete(user.id)}
-                    className="bg-red-500 text-white rounded px-4 py-2"
+                    <MdEdit size={20} />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(car.id)}
+                    className="text-red-500 m-4"
                   >
-                    Delete
-                  </Button>
+                    <MdDelete size={20} />
+                  </button>
                 </td>
               </tr>
             ))}

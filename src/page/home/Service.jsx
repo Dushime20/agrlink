@@ -2,7 +2,7 @@ import { Truck, Box, Users, Handshake } from "lucide-react";
 
 export default function Services() {
   return (
-    <section className="bg-white text-green-700 py-16 px-6 md:py-24 md:px-12">
+    <section className=" text-green-800 py-16 px-6 md:py-24 md:px-12">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold">Our Services</h2>
         <p className="mt-4 text-lg">

@@ -8,10 +8,10 @@ import { TbMessageReportFilled } from "react-icons/tb";
 import { MdContactSupport } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
 import { FaProductHunt } from "react-icons/fa6";
-
+//bg-[#032d15]
 const SideBar = () => {
   return (
-    <div className="h-screen w-64 text-white bg-[#032d15]
+    <div className="h-screen w-64 text-white  bg-green-900
      flex flex-col shadow-2xl">
       <div className="p-4 text-2xl font-bold text-gray-100">
         Dashboard
@@ -26,13 +26,13 @@ const SideBar = () => {
             </Link>
           </li>
           <li className="">
-            <Link to="/dashboard/manage-cars" className="flex items-center p-4 transition-colors duration-200">
+            <Link to="/dashboard/manage-product" className="flex items-center p-4 transition-colors duration-200">
             <span><FaProductHunt/></span>
               <span className="ml-2">Manage Product</span>
             </Link>
           </li>
           <li className="mb-2">
-            <Link to="/dashboard/view-bookings" className="flex items-center p-4 transition-colors duration-200">
+            <Link to="/dashboard/view-order" className="flex items-center p-4 transition-colors duration-200">
             <span><FaLuggageCart/></span>
               <span className="ml-2">View Ordering</span>
             </Link>
