@@ -1,13 +1,39 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu, ShoppingCart, User, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Header from "../dashboard/Header";
 import HomeHeader from "./Header";
+import ApiService from "@/config/ApiConfig";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isUser, setIsUser] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const auth = ApiService.isAuthenticated();
+    const user = ApiService.isUser();
+    const seller = ApiService.isSeller()
+    const admin = ApiService.isAdmin();
+    setIsAuthenticated(auth);
+    setIsUser(user);
+    setIsAdmin(admin);
+  }, []);
+
+  const handleLogout = () => {
+    const isLogout = window.confirm("Are you sure you want to logout?");
+    if (isLogout) {
+      ApiService.logout();
+      setIsAuthenticated(false);
+      navigate("/login");
+    }
+  };
 
   return (
     <div className="top-0 sticky z-10">
@@ -31,13 +57,13 @@ export default function Navbar() {
         <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="hover:underline">Home</Link>
           <Link to="/products" className="hover:underline">Products</Link>
-          <Link to="/dashboard" className="hover:underline">Admin</Link>
-          <Link to="/cart" className="hover:underline flex items-center">
+          {isAdmin && <Link to="/dashboard" className="hover:underline">Admin</Link>}
+          {isUser && <Link to="/cart" className="hover:underline flex items-center">
             <ShoppingCart size={20} className="mr-1" /> My order
-          </Link>
-          <Link to="/profile" className="hover:underline flex items-center">
+          </Link>}
+          {isAuthenticated && <Link to="/profile" className="hover:underline flex items-center">
             <User size={20} className="mr-1" /> Profile
-          </Link>
+          </Link>}
         </div>
 
         {/* Mobile Menu Button */}
@@ -49,14 +75,17 @@ export default function Navbar() {
       {/* Mobile Dropdown Menu */}
       {isOpen && (
         <div className="md:hidden mt-2 space-y-2 text-center">
-          <Link to="/" className="block py-2 hover:bg-green-700">Home</Link>
-          <Link to="/products" className="block py-2 hover:bg-green-700">Products</Link>
-          <Link to="/cart" className=" py-2 hover:bg-green-700 flex justify-center">
-            <ShoppingCart size={20} className="mr-1" /> Cart
-          </Link>
-          <Link to="/profile" className=" py-2 hover:bg-green-700 flex justify-center">
+          <Link to="/" className="block py-2 hover hover:bg-green-50">Home</Link>
+          <Link to="/products" className="block py-2 hover:bg-green-50">Products</Link>
+        {isUser &&   <Link to="/cart" className=" py-2 hover:bg-green-50 flex justify-center">
+            <ShoppingCart size={20} className="mr-1" /> My order
+          </Link>}
+          {isAdmin &&   <Link to="/dashboard" className=" py-2 hover:bg-green-50 flex justify-center">
+             Admin
+          </Link>}
+         {isAuthenticated &&  <Link to="/profile" className=" py-2 hover:bg-green-50 flex justify-center">
             <User size={20} className="mr-1" /> Profile
-          </Link>
+          </Link>}
         </div>
       )}
     </nav>

@@ -122,7 +122,11 @@ static async deleteUser(userId) {
 
   static isUser() {
     const userType = localStorage.getItem("UserType");
-    return userType === "Customer";
+    return userType === "Buyer";
+  }
+   static isSeller() {
+    const userType = localStorage.getItem("UserType");
+    return userType === "Seller";
   }
   static isAdmin() {
     const userType = localStorage.getItem("UserType");
