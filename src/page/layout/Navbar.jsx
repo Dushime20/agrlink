@@ -3,12 +3,16 @@ import { Link, NavLink } from "react-router-dom";
 import { Menu, ShoppingCart, User, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Header from "../dashboard/Header";
+import HomeHeader from "./Header";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white sticky text-green-700 p-4">
+    <div className="top-0 sticky z-10">
+      <HomeHeader/>
+      <nav className="bg-white sticky text-green-700 p-4">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <h1 className="text-lg font-bold">
@@ -56,5 +60,6 @@ export default function Navbar() {
         </div>
       )}
     </nav>
+    </div>
   );
 }
