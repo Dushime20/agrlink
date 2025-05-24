@@ -2,7 +2,9 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 class ApiService {
-  static BASE_URL = "http://localhost:3300/agritech/v1";
+ static BASE_URL = process.env.NODE_ENV === 'production' 
+  ? "https://agrlink-backend.onrender.com/agritech/v1"
+  : "http://localhost:3300/agritech/v1";
 
   static getHeader(data) {
     const token = localStorage.getItem("token");
