@@ -79,12 +79,14 @@ const AuthTabs = () => {
       try {
         const formData = { email:email, password:password }
          console.log("formdata",formData)
+
        
         const response = await ApiService.loginUser(formData)
-
-        toast.success("User logged in successfully")
+         localStorage.setItem('token', response.token);
+         console.log("logged in user", response.token);
+         toast.success("User logged in successfully")
         //console.log('Login successful:', response)
-        localStorage.setItem('token', response.token);
+       
         
         navigate("/")
         // Handle successful login, e.g., redirect to a different page or store token

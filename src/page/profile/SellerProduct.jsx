@@ -1,35 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { toast } from "sonner";
+import ApiService from "@/config/ApiConfig";
 
 const SellerProduct = () => {
-  const transactions = [
-    {
-      id: 1,
-      date: "2025-02-15",
-      product: "Coffee Beans (Grade A)",
-      quantity: "500kg",
-     
-    },
-    {
-      id: 2,
-      date: "2025-01-20",
-      product: "Maize",
-      quantity: "1 ton",
-      
-    },
-    {
-      id: 3,
-      date: "2024-12-10",
-      product: "Coffee Beans (Grade A)",
-      quantity: "300kg",
-      
-    },
-  ];
+  const [products, setProducts] = useState([]);
+
+  // Fetch products by seller ID on mount
+  useEffect(() => {
+    getProductBySellerId();
+  }, []);
+
+  const getProductBySellerId = async () => {
+    try {
+      const result = await ApiService.getProductBySellerId();
+      console.log("Products by seller ID:", result);
+      setProducts(result.product); // Ensure your API returns { product: [...] }
+    } catch (error) {
+      toast.error("Getting products failed");
+      console.error("API error:", error);
+    }
+  };
+
+  const handleEdit = (id) => {
+    toast.info(`Edit product ${id}`);
+    // Add your edit logic here
+  };
+
+  const handleDelete = (id) => {
+    toast.info(`Delete product ${id}`);
+    // Add your delete logic here
+  };
+
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
-      <h3 className="text-lg font-semibold p-4 border-b">
-        Current Listing
-      </h3>
+      <h3 className="text-lg font-semibold p-4 border-b">Current Listing</h3>
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -43,43 +48,37 @@ const SellerProduct = () => {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Quantity
               </th>
-              
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
+                Actions
               </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {transactions.map((transaction) => (
-              <tr key={transaction.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap text-sm">
-                  {transaction.date}
+            {products.length === 0 ? (
+              <tr>
+                <td colSpan="4" className="px-6 py-4 text-center text-sm text-gray-500">
+                  No products found.
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  {transaction.product}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm">
-                  {transaction.quantity}
-                </td>
-              
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <td className="px-4 py-2">
-                    <button
-                      onClick={() => handleEdit(car.id)}
-                      className=" text-green-900 "
-                    >
+              </tr>
+            ) : (
+              products.map((product) => (
+                <tr key={product._id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    {new Date(product.createdAt).toLocaleDateString()}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{product.name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">{product.stock}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm flex gap-2">
+                    <button onClick={() => handleEdit(product._id)} className="text-green-600">
                       <MdEdit size={20} />
                     </button>
-                    <button
-                      onClick={() => handleDelete(car.id)}
-                      className="text-red-500 m-4"
-                    >
+                    <button onClick={() => handleDelete(product._id)} className="text-red-500">
                       <MdDelete size={20} />
                     </button>
                   </td>
-                </td>
-              </tr>
-            ))}
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

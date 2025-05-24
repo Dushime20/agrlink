@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
     {/* Product Image */}
     <div className="relative overflow-hidden rounded-lg">
       <img
-        src={product.image}
+         src={product.images?.[0]?.url}
         alt={product.name}
         className="w-full h-48 object-cover rounded-lg transform hover:scale-105 transition-transform duration-300"
       />
@@ -26,10 +26,7 @@ const ProductCard = ({ product }) => {
       </button>
     </div>
 
-    {/* Product Category */}
-    {/* <span className="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-lg uppercase font-semibold shadow">
-      {product.category}
-    </span> */}
+  
 
     {/* Product Name */}
     <h2 className="text-lg font-semibold mt-3 text-gray-800 hover:text-green-600 transition-colors duration-300">
@@ -38,13 +35,13 @@ const ProductCard = ({ product }) => {
 
     {/* Price & Details Button */}
     <div className="flex justify-between items-center mt-3">
-      <p className="text-green-600 font-bold text-xl">${product.price} per Kg</p>
+      <p className="text-green-600 font-bold text-xl">{product.price}Rwf per Kg</p>
       
     </div>
 
     {/* Add to Cart Button */}
     <Button className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition-colors duration-300">
-    <Link to={`/product-detail/${product.id}`}>
+    <Link to={`/product-detail/${product._id}`}>
     View Deatails
     </Link>
     </Button>

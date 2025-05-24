@@ -2,14 +2,14 @@ import React from 'react';
 import boy from "../../assets/boy.png"
 const Header = () => {
   return (
-    <header className="bg-white  py-2 px-6 flex items-center justify-between w-full shadow-2xl">
+    <header className="  py-2 px-6 flex items-center justify-between w-full ">
       {/* Logo or Title */}
       <div className="text-xl font-bold text-green-900 flex-shrink-0">
       AGRILINK Rwanda
       </div>
 
       {/* Search Bar */}
-      <div className="flex-grow mx-4">
+      <div className="flex-grow mx-4 hidden md:flex">
         <input
           type="text"
           placeholder="Search..."

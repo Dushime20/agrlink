@@ -8,10 +8,10 @@ const ProductCategoryCard = ({ product }) => {
   return (
     <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 bg-white relative">
     {/* Product Image */}
-     <Link to={`/product-detail/${product.id}`}>
+     <Link to={`/product-detail/${product._id}`}>
       <div className="relative overflow-hidden rounded-lg">
       <img
-        src={product.image}
+         src={product.images?.[0]?.url}
         alt={product.name}
         className="w-full h-48 object-cover rounded-lg transform hover:scale-105 transition-transform duration-300"
       />
@@ -40,7 +40,7 @@ const ProductCategoryCard = ({ product }) => {
 
     {/* Price & Details Button */}
     <div className="flex justify-between items-center mt-3">
-      <p className="text-green-600 font-bold text-xl">${product.price} per Kg</p>
+      <p className="text-green-600 font-bold text-xl">{product.price}Rwf per Kg</p>
       
     </div>
 

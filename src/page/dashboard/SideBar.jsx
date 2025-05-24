@@ -11,7 +11,7 @@ import { FaProductHunt } from "react-icons/fa6";
 //bg-[#032d15]
 const SideBar = () => {
   return (
-    <div className="h-screen w-64 text-white  bg-green-900
+    <div className="h-screen w-48  text-white  bg-green-900
      flex flex-col shadow-2xl">
       <div className="p-4 text-2xl font-bold text-gray-100">
         Dashboard
