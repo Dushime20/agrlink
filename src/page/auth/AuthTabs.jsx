@@ -24,6 +24,8 @@ const AuthTabs = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [role, setRole] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+const [isSigningUp, setIsSigningUp] = useState(false);
 
   const navigate = useNavigate();
 
@@ -88,6 +90,8 @@ const AuthTabs = () => {
     e.preventDefault();
     if (validateLogin()) {
       try {
+        setIsLoggingIn(true); // Start loading
+
         const formData = { email: email, password: password };
         console.log("formdata", formData);
 
@@ -102,7 +106,9 @@ const AuthTabs = () => {
       } catch (error) {
         toast.error("invalid email or password");
         console.log(error);
-      }
+      }  finally {
+      setIsLoggingIn(false); // Stop loading
+    }
     }
   };
 
@@ -110,6 +116,7 @@ const AuthTabs = () => {
     e.preventDefault();
     if (validateSignup()) {
       try {
+        setIsLoggingIn(true);
         const formData = {
           email: email,
           password: password,
@@ -123,13 +130,15 @@ const AuthTabs = () => {
         const response = await ApiService.registerUser(formData);
         // alert("login successifly")
         toast.success("User signed up successfully");
-        //console.log('Signup successful:', response)
+        console.log('Signup successful:', response)
         // Handle successful signup, e.g., redirect to a different page or store token
       } catch (error) {
         toast.error("Signup failed");
 
         console.log(error);
-      }
+      }finally {
+      setIsLoggingIn(false); // Stop loading
+    }
     }
   };
   return (
