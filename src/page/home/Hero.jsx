@@ -17,7 +17,7 @@ export default function Hero() {
           </p>
           <div className="mt-6 space-x-4">
             <Link to="/auth">
-              <Button className="bg-white text-green-700 font-semibold hover:bg-gray-200">Shop Now</Button>
+              <Button className="bg-white text-green-700 font-semibold hover:bg-green-100">Start Now</Button>
             </Link>
             <Link to="/about">
               <Button variant="outline" className="text-white bg-green-400 border-white hover:bg-green-600">Learn More</Button>

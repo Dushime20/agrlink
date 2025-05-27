@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ApiService from "@/config/ApiConfig";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
@@ -21,6 +21,7 @@ import { Toaster } from "@/components/ui/sonner";
 const CreateOrder = ({ product }) => {
 const productId = product?._id;// or pass as a prop
   const [quantity, setQuantity] = useState(1);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [shippingAddress, setShippingAddress] = useState({
     fullName: "",
     streetAddress: "",
@@ -30,12 +31,25 @@ const productId = product?._id;// or pass as a prop
   const [paymentMethod, setPaymentMethod] = useState("PayPack");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+
+    useEffect(() => {
+    setIsAuthenticated(ApiService.isAuthenticated());
+    
+  }, []);
+
+  const navigate = useNavigate()
+
   const handleAddressChange = (e) => {
     const { name, value } = e.target;
     setShippingAddress((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmitOrder = async () => {
+
+    if(!isAuthenticated){
+        navigate("/auth");
+        return
+    }
     if (!productId) {
       toast.error("Product ID is missing.");
       return;
