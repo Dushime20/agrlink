@@ -32,7 +32,7 @@ const [products, setProducts] = useState([]);
   return (
     <div>
         <div className='py-4'>
-       <Link to={"/products"}> <p className='text-green-500 text-2xl px-6'>Shop by category</p></Link>
+       <p className='text-green-500 text-2xl px-6'>Shop by category</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {products.map((product) => (
           <ProductCategoryCard key={product._id} product={product} />

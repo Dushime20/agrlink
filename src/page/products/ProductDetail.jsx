@@ -14,17 +14,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import ApiService from "@/config/ApiConfig";
+import CreateOrder from "../order/createOrder";
 
-const paymentMethods = [
-  { id: "MOMO", name: "MOMO", imagePath: "/image/momo.jpeg" },
-  {
-    id: "AIRTEL_MONEY",
-    name: "AIRTEL MONEY",
-    imagePath: "/image/aitelMoney.jpeg",
-  },
-  { id: "VISA_CARD", name: "VISA CARD", imagePath: "/image/visa.jpeg" },
-  { id: "PAYPAL", name: "PAYPAL", imagePath: "/image/paypal.jpeg" },
-];
+
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -34,13 +26,7 @@ const ProductDetail = () => {
 
   const [mainImage, setMainImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [paymentMethod, setPaymentMethod] = useState("MOMO");
-  const [shippingAddress, setShippingAddress] = useState({
-    name: "",
-    address: "",
-    city: "",
-    phone: "",
-  });
+  
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -159,169 +145,9 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* Order Dialog */}
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium">
-                Order Now
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md md:max-w-lg max-h-screen">
-              <DialogHeader className="sticky top-0 z-10 pb-4">
-                <DialogTitle>Complete Your Order</DialogTitle>
-              </DialogHeader>
-              <div className="overflow-y-auto pr-2 max-h-[calc(100vh-8rem)]">
-                <div className="space-y-6 py-4">
-                  {/* Product Summary */}
-                  <Card className="p-4 bg-gray-50">
-                    <div className="flex items-center space-x-4">
-                      <img
-                        src={product.images?.[0]?.url}
-                        alt={product.name}
-                        className="w-16 h-16 object-cover rounded-md"
-                      />
-                      <div>
-                        <h3 className="font-semibold">{product.name}</h3>
-                        <p className="text-sm text-gray-500">
-                          ${product.price} per unit
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
+            {/* Order Button/Dialog */}
+           <CreateOrder product={product} />
 
-                  {/* Quantity Control */}
-                  <div className="space-y-2">
-                    <Label htmlFor="quantity">Quantity</Label>
-                    <div className="flex items-center">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() =>
-                          quantity > 1 && setQuantity(quantity - 1)
-                        }
-                        className="px-3"
-                      >
-                        -
-                      </Button>
-                      <Input
-                        id="quantity"
-                        type="number"
-                        value={quantity}
-                        onChange={handleQuantityChange}
-                        min="1"
-                        max={product.stock}
-                        className="w-20 mx-2 text-center"
-                      />
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() =>
-                          quantity < product.stock && setQuantity(quantity + 1)
-                        }
-                        className="px-3"
-                      >
-                        +
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Shipping Address */}
-                  <div className="space-y-4">
-                    <h3 className="font-medium">Shipping Address</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="name">Full Name</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={shippingAddress.name}
-                          onChange={handleAddressChange}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          value={shippingAddress.phone}
-                          onChange={handleAddressChange}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <Label htmlFor="address">Street Address</Label>
-                      <Textarea
-                        id="address"
-                        name="address"
-                        value={shippingAddress.address}
-                        onChange={handleAddressChange}
-                        rows={2}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="city">City</Label>
-                      <Input
-                        id="city"
-                        name="city"
-                        value={shippingAddress.city}
-                        onChange={handleAddressChange}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Payment Method */}
-                  <div className="space-y-4">
-                    <h3 className="font-medium">Payment Method</h3>
-                    <RadioGroup
-                      value={paymentMethod}
-                      onValueChange={setPaymentMethod}
-                      className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                    >
-                      {paymentMethods.map((method) => (
-                        <div
-                          key={method.id}
-                          className="flex items-center space-x-2"
-                        >
-                          <RadioGroupItem value={method.id} id={method.id} />
-                          <Label
-                            htmlFor={method.id}
-                            className="flex items-center cursor-pointer"
-                          >
-                            <img
-                              src={method.imagePath}
-                              alt={method.name}
-                              className="h-6 w-auto mr-2 object-contain"
-                            />
-                            {method.name}
-                          </Label>
-                        </div>
-                      ))}
-                    </RadioGroup>
-                  </div>
-
-                  {/* Order Summary */}
-                  <div className="space-y-2 pt-4 border-t">
-                    <div className="flex justify-between text-sm">
-                      <span>Subtotal</span>
-                      <span>${totalAmount.toFixed(2)}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span>Shipping Fee</span>
-                      <span>${shippingFee.toFixed(2)}</span>
-                    </div>
-                    <div className="flex justify-between font-semibold">
-                      <span>Total</span>
-                      <span>${grandTotal.toFixed(2)}</span>
-                    </div>
-                  </div>
-
-                  <Button className="w-full bg-green-600 text-white hover:bg-green-700">
-                    Confirm Order
-                  </Button>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
         </div>
       </div>
     </div>

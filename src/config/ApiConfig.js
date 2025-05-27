@@ -109,6 +109,8 @@ class ApiService {
     }
   }
 
+  /*** PRODUCT *****/
+
   /** Add product */
   static async Addproduct(formData) {
     try {
@@ -171,6 +173,97 @@ class ApiService {
       return response.data;
     } catch (error) {
       console.error("Error filtering products:", error);
+      throw error;
+    }
+  }
+
+
+  /*** ORDER *** */
+   /** Create Order */
+  static async createOrder(productId, orderData) {
+    try {
+      const response = await axios.post(
+        `${this.BASE_URL}/order/add/${productId}`,
+        orderData,
+        {
+          headers: this.getHeader(orderData),
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error creating order:', error);
+      throw error;
+    }
+  }
+
+  /** Get all orders (admin use typically) */
+  static async getAllOrders() {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/order/getAll`, {
+        headers: this.getHeader(),
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error getting all orders:', error);
+      throw error;
+    }
+  }
+
+  /** Get orders by buyer (authenticated buyer only) */
+  static async getOrdersByBuyerId() {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/order/getByBuyerId`, {
+        headers: this.getHeader(),
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching buyer orders:', error);
+      throw error;
+    }
+  }
+
+  /** Get orders by seller (authenticated seller only) */
+  static async getOrdersBySellerId() {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/order/getBySellerId`, {
+        headers: this.getHeader(),
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching seller orders:', error);
+      throw error;
+    }
+  }
+
+
+
+
+
+  /**** PAYMENT ****/
+  /** Initiate PayPack payment */
+  static async initiatePaypackPayment(orderId) {
+    try {
+      const response = await axios.post(
+        `${this.BASE_URL}/payment/paypack/initiate/${orderId}`,
+        {},
+        { headers: this.getHeader() }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error initiating PayPack payment:', error);
+      throw error;
+    }
+  }
+
+  /** Verify PayPack payment */
+  static async verifyPaypackPayment() {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/payment/paypack/verify`, {
+        headers: this.getHeader(),
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error verifying PayPack payment:', error);
       throw error;
     }
   }

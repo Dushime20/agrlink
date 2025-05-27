@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const [liked, setLiked] = useState(false);
   return (
+    
     <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 bg-white relative">
+
+      
     {/* Product Image */}
     <div className="relative overflow-hidden rounded-lg">
       <img
