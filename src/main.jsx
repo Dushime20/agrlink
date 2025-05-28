@@ -17,6 +17,8 @@ import AboutPage from './page/home/AboutUsPage.jsx';
 import ManageProduct from './page/dashboard/ManageProduct';
 import ViewOrder from './page/dashboard/ViewOrder';
 import UserSettings from './page/dashboard/User';
+import MyOrder from './page/order/MyOrder';
+
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,7 @@ const router = createBrowserRouter([
       {path:"/products",element:<ProductList/>},
       {path:"/product-detail/:id", element:<ProductDetail/>},
       {path:"/profile", element:<Profile/>},
+      {path:"/my-order", element:<MyOrder/>},
       
     ]
   },{path:'/auth', element:<AuthTabs/>},

@@ -68,7 +68,7 @@ export default function Navbar() {
 
             {isAdmin && <Link to="/dashboard" className="hover:underline">Admin</Link>}
             {isUser && (
-              <Link to="/cart" className="hover:underline flex items-center">
+              <Link to="/my-order" className="hover:underline flex items-center">
                 <ShoppingCart size={20} className="mr-1" /> My order
               </Link>
             )}
