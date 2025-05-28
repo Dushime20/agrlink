@@ -49,20 +49,15 @@ const SideBar = () => {
               <span className="ml-2">Reports</span>
             </Link>
           </li>
-          <li className="mb-2">
-            <Link to="/dashboard/support" className="flex items-center p-4 transition-colors duration-200">
-            <span><MdContactSupport/></span>
-              <span className="ml-2">Support</span>
-            </Link>
-          </li>
+         
          
         </ul>
         
       </nav>
-      <div className="mt-8 bg-[#97c0a3] p-4 rounded-lg flex items-center">
+      <div className="mt-8 bg-[#c097af] p-4 rounded-lg flex items-center">
            <div> <Link to="/" className="flex items-center  transition-colors duration-200">
             <span><IoIosLogOut /></span>
-              <span className="ml-2">Logout</span>
+              
             </Link></div>
           </div>
     </div>

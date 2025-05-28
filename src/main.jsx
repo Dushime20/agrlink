@@ -19,6 +19,9 @@ import ViewOrder from './page/dashboard/ViewOrder';
 import UserSettings from './page/dashboard/User';
 import MyOrder from './page/order/MyOrder';
 
+import ReportsPage from './page/dashboard/Reports';
+import SupportPage from './page/profile/Suport';
+
 
 const router = createBrowserRouter([
   {
@@ -32,6 +35,7 @@ const router = createBrowserRouter([
       {path:"/product-detail/:id", element:<ProductDetail/>},
       {path:"/profile", element:<Profile/>},
       {path:"/my-order", element:<MyOrder/>},
+      {path:"/suport", element:<SupportPage/>},
       
     ]
   },{path:'/auth', element:<AuthTabs/>},
@@ -43,6 +47,7 @@ const router = createBrowserRouter([
       {path:"manage-product", element: <ManageProduct/>},
       {path:"view-order", element: <ViewOrder/>},
       {path:"user-settings", element: <UserSettings/>},
+      {path:"reports", element: <ReportsPage/>},
     ]
   }
 ])

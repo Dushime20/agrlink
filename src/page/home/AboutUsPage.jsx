@@ -1,3 +1,4 @@
+import SupportPage from "../profile/Suport";
 import ContactUs from "./ContactUs";
 import Services from "./Service";
 
@@ -61,9 +62,9 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
+      <Services/>
 
-       <Services/>
-        <ContactUs/>
+       <SupportPage/>
     </section>
   );
 };

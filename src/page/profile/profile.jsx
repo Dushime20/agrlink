@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AddProductDialog from "../products/AddProduct";
 import SelledProduct from "./SelledProduct";
 import SellerProduct from "./SellerProduct";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -95,7 +96,7 @@ const Profile = () => {
                 Edit profile
               </button>
               <button className="border border-green-600 text-green-600 hover:bg-green-50 px-4 py-2 rounded-md text-sm">
-                Message
+               <Link to ="/suport"> Message</Link>
               </button>
             </div>
           </div>
