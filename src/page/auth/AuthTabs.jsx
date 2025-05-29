@@ -33,10 +33,45 @@ const AuthTabs = () => {
       toast.error("Email is required.");
       return false;
     }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(form.email)) {
+    toast.error("Please enter a valid email address.");
+    return;
+  }
     if (!password.length) {
       toast.error("Password is required.");
       return false;
     }
+    if (!password.length) {
+    toast.error("Password is required.");
+    return false;
+  }
+
+  if (password.length < 8) {
+    toast.error("Password must be at least 8 characters long.");
+    return false;
+  }
+
+  if (!/[a-z]/.test(password)) {
+    toast.error("Password must include at least one lowercase letter.");
+    return false;
+  }
+
+  if (!/[A-Z]/.test(password)) {
+    toast.error("Password must include at least one uppercase letter.");
+    return false;
+  }
+
+  if (!/[0-9]/.test(password)) {
+    toast.error("Password must include at least one number.");
+    return false;
+  }
+
+  if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+    toast.error("Password must include at least one special character.");
+    return false;
+  }
     return true;
   };
 
