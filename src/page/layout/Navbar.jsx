@@ -67,11 +67,11 @@ export default function Navbar() {
             <Link to="/products" className="hover:underline">Products</Link>
 
             {isAdmin && <Link to="/dashboard" className="hover:underline">Admin</Link>}
-            {isUser && (
+        
               <Link to="/my-order" className="hover:underline flex items-center">
                 <ShoppingCart size={20} className="mr-1" /> My order
               </Link>
-            )}
+            
 
             {isAuthenticated ? (
               <>
