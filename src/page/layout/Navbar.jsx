@@ -42,7 +42,7 @@ export default function Navbar() {
 
   return (
     <div className="top-0 sticky z-10">
-      <HomeHeader />
+      {/* <HomeHeader /> */}
       <nav className="bg-white sticky text-green-700 p-4 shadow">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-lg font-bold">
