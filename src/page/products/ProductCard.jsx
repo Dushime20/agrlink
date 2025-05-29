@@ -45,7 +45,7 @@ const ProductCard = ({ product }) => {
     {/* Add to Cart Button */}
     <Button className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition-colors duration-300">
     <Link to={`/product-detail/${product._id}`}>
-    View Deatails
+    View Details
     </Link>
     </Button>
   </div>
