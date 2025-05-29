@@ -219,7 +219,7 @@ const AuthTabs = () => {
               </div>
               <div>
                 <label className="block text-gray-700">Confirm Password</label>
-                <Input type="password" value={confirmPassword} onChange={(e) => setconfirmPassword(e.target.value)} placeholder="Confirm your password" required />
+                <Input type="password" value={confirmPassword} onChange={(e) => setconfirmPassword(e.target.value)} placeholder="Confirm your password(hint:MyPassword@2024)" required />
               </div>
               <Toaster position="top-right" richColors />
               <Button
