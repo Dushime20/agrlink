@@ -21,6 +21,7 @@ import MyOrder from './page/order/MyOrder';
 
 import ReportsPage from './page/dashboard/Reports';
 import SupportPage from './page/profile/Suport';
+import EditUser from './page/dashboard/EditUser';
 
 
 const router = createBrowserRouter([
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
       {path:"view-order", element: <ViewOrder/>},
       {path:"user-settings", element: <UserSettings/>},
       {path:"reports", element: <ReportsPage/>},
+      {path:"edit-user/:userId", element: <EditUser/>},
     ]
   }
 ])

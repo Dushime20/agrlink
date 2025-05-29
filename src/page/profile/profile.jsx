@@ -5,6 +5,7 @@ import SellerProduct from "./SellerProduct";
 import { Link } from "react-router-dom";
 import { IoPersonCircle } from "react-icons/io5";
 import ApiService from "@/config/ApiConfig";
+import UpdateUserProfile from "./UpdateUserProfile";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -29,7 +30,8 @@ const Profile = () => {
         setUserProfile(response.findUser);
         setLoading(false);
       } catch (err) {
-        setError("Failed to fetch users");
+        setError("Failed to fetch user profilr");
+        console.log(err)
       } finally {
         setLoading(false);
       }
@@ -91,9 +93,9 @@ const Profile = () => {
                 Phone: {userProfile.phoneNumber}
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
-                <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm">
-                  Edit profile
-                </button>
+
+                  <UpdateUserProfile/>
+              
                 <button className="border border-green-600 text-green-600 hover:bg-green-50 px-4 py-2 rounded-md text-sm">
                   <Link to="/support">Message</Link>
                 </button>

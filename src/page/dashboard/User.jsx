@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { MdDelete, MdEdit } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
+import AddNewUser from "./AddUser";
+import EditUser from "./EditUser";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -16,6 +18,8 @@ const UserSettings = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -45,7 +49,7 @@ const UserSettings = () => {
   }, [searchTerm, users]);
 
   const handleEdit = (userId) => {
-    console.log("Edit user with ID:", userId);
+   navigate(`/dashboard/edit-user/${userId}`);
   };
 
   const handleDelete = (userId) => {
@@ -63,9 +67,9 @@ const UserSettings = () => {
     <div className="p-6 bg-white rounded-lg shadow-lg text-green-900">
       <div className='flex justify-between mb-4'>
         <h1 className="text-2xl font-bold">All Users</h1>
-        <Link to="/dashboard/add-car">
-          <Button className="bg-green-900 text-white"><FaPlus /></Button>
-        </Link>
+    
+          <AddNewUser/>
+        
       </div>
 
       <Input
@@ -97,7 +101,7 @@ const UserSettings = () => {
               <TableCell>{user.phoneNumber}</TableCell>
               <TableCell>{user.address}</TableCell>
               <TableCell className="flex gap-2">
-                <Button variant="ghost" size="icon" onClick={() => handleEdit(user._id)}><MdEdit size={18} className="text-green-900"/></Button>
+               <EditUser userId={user._id} />
                 <Button variant="ghost" size="icon" onClick={() => handleDelete(user._id)}><MdDelete size={18} className="text-red-600" /></Button>
               </TableCell>
             </TableRow>
