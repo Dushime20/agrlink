@@ -41,7 +41,7 @@ const MyOrder = () => {
               <div>
                 <p className="font-medium">Order ID: <span className="text-gray-700">{order.orderId}</span></p>
                 <p className="text-sm text-gray-500">Order date: {new Date(order.orderDate).toLocaleDateString()}</p>
-                {/* <p className="text-sm text-gray-500">Delivery date: {new Date(order.orderDate).toLocaleDateString()}</p> */}
+                <p className="text-sm text-gray-500">Delivery date: {new Date(order.orderDate).toLocaleDateString()}</p>
               </div>
               <div className="text-right">
                 <p className="text-sm font-semibold">Status: <span className="text-blue-600">{order.orderStatus}</span></p>

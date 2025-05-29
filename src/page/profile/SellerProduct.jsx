@@ -5,6 +5,8 @@ import ApiService from "@/config/ApiConfig";
 
 const SellerProduct = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
   // Fetch products by seller ID on mount
   useEffect(() => {
@@ -13,12 +15,16 @@ const SellerProduct = () => {
 
   const getProductBySellerId = async () => {
     try {
+     
       const result = await ApiService.getProductBySellerId();
       console.log("Products by seller ID:", result);
-      setProducts(result.product); // Ensure your API returns { product: [...] }
+      setProducts(result.product);
+       setLoading(true) 
     } catch (error) {
       toast.error("Getting products failed");
       console.error("API error:", error);
+      setLoading(false);
+      setError("Failed to fetch product");
     }
   };
 
@@ -32,6 +38,15 @@ const SellerProduct = () => {
     // Add your delete logic here
   };
 
+   if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
       <h3 className="text-lg font-semibold p-4 border-b">Current Listing</h3>
@@ -39,6 +54,9 @@ const SellerProduct = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                No
+              </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Date
               </th>
@@ -61,8 +79,11 @@ const SellerProduct = () => {
                 </td>
               </tr>
             ) : (
-              products.map((product) => (
+              products.map((product,index) => (
                 <tr key={product._id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    {index + 1}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     {new Date(product.createdAt).toLocaleDateString()}
                   </td>

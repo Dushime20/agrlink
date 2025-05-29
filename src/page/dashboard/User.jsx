@@ -22,7 +22,9 @@ const UserSettings = () => {
       try {
         const response = await ApiService.getAllUser();
         setUsers(response.findUser);
+        
         setFilteredUsers(response.findUser);
+        setLoading(false)
       } catch (err) {
         setError("Failed to fetch users");
       } finally {

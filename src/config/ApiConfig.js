@@ -66,6 +66,19 @@ class ApiService {
     }
   }
 
+   /** Get all users profile */
+  static async getUserProfile() {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/user/getUserProfile`, {
+        headers: this.getHeader(),
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error get  user profile:", error);
+      throw error;
+    }
+  }
+
   /** Get user by ID */
   static async getUserById(userId) {
     try {

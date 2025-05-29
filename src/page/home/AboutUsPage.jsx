@@ -64,7 +64,6 @@ const AboutPage = () => {
       </div>
       <Services/>
 
-       <SupportPage/>
     </section>
   );
 };
