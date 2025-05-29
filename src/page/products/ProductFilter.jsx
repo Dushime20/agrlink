@@ -1,54 +1,60 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import ApiService from "@/config/ApiConfig";
 
 const ProductFilter = ({ categories, onFilter }) => {
   const [name, setName] = useState("");
-  const [category, setCategory] = useState(null); // Set initial state to null
-  const [price, setPrice] = useState(null);
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState("");
 
-  const handleFilter = () => {
-    onFilter({ name, category, price });
+  const handleFilter = async () => {
+    const queryParams = {
+      ...(name && { name }),
+      ...(category && { category }),
+      ...(price && { price }),
+    };
+
+    try {
+      const response = await ApiService.filterProductByNameAndPriceAndCategory(queryParams);
+      if (onFilter) {
+        onFilter(response.products || []);
+      }
+    } catch (err) {
+      console.error("Failed to filter products:", err);
+    }
   };
 
   return (
     <div className="flex flex-wrap gap-4 p-4 bg-white shadow rounded-lg">
-      {/* Search Input */}
-      <Input 
-       className="w-full"
+      {/* Search by name */}
+      <Input
+        className="w-full"
         placeholder="Search by name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
-      {/* Category Filter */}
-      <Select onValueChange={setCategory}>
-        <SelectTrigger className="w-[180px] border border-gray-300 rounded-md px-3 py-2">
-          <SelectValue placeholder="All Categories" />
-        </SelectTrigger>
-        <SelectContent>
-          {categories.map((cat) => (
-            <SelectItem key={cat} value={cat}>
-              {cat}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      {/* Category input */}
+      <Input
+        className="w-[180px]"
+        placeholder="Enter category"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      />
 
-      {/* Price Filter */}
-      <Select onValueChange={setPrice}>
-        <SelectTrigger className="w-[180px] border border-gray-300 rounded-md px-3 py-2">
-          <SelectValue placeholder="Any Price" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="low">Low to High</SelectItem>
-          <SelectItem value="high">High to Low</SelectItem>
-        </SelectContent>
-      </Select>
+      {/* Price input */}
+      <Input
+        className="w-[180px]"
+        placeholder="Enter price  (1000)"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+      />
 
-      {/* Apply Filters Button */}
-      <Button className="bg-green-800 hover:bg-green-400" onClick={handleFilter}>Apply Filters</Button>
+      {/* Filter button */}
+      <Button className="bg-green-800 hover:bg-green-400" onClick={handleFilter}>
+        Apply Filters
+      </Button>
     </div>
   );
 };
